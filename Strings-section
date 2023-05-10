@@ -1,9 +1,8 @@
 1. Given an input string s, reverse the order of the words.
+   A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space.
+   Return a string of the words in reverse order concatenated by a single space.
 
-A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space.
-
-Return a string of the words in reverse order concatenated by a single space.
-
+just read the solution easy
 '''
 class Solution {
     public String reverseWords(String s) {
@@ -43,3 +42,37 @@ class Solution {
 }
 }
 '''
+
+
+
+2.Longest Palindromic Substring
+sol:- generally a string has 2n-1 center's so in this method we take each center and expand arround it to find longest 
+      Palindromic string. As shown below.
+      
+      class Solution {
+    public int palindrome_checker(String s, int Left, int Right){
+        int L=Left,R=Right;
+        while(L>=0 && R<s.length() && s.charAt(L)==s.charAt(R)){
+            L--;
+            R++;
+        }
+        return R-L-1;
+    }
+    public String longestPalindrome(String s) {
+        int start=0,end=0;
+        for(int i=0;i<s.length();i++){
+            int len1 = palindrome_checker(s,i,i);
+            int len2 = palindrome_checker(s,i,i+1);
+            int len = Math.max(len1,len2);
+            if(len>end-start){
+                start = i - (len-1)/2;
+                end = i + len/2;
+            }
+        }
+        return s.substring(start,end+1);
+    }
+}
+
+
+Time complexity == O(n2)
+Space Complexity == O(1)
