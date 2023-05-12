@@ -78,3 +78,49 @@ Time complexity == O(n2)
 Space Complexity == O(1)
 
 Machener change
+
+
+
+
+
+3. Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer (similar to C/C++'s atoi function).
+   The algorithm for myAtoi(string s) is as follows:
+   
+Ans: 
+public int myAtoi(String s) {
+        if(s.length()==0){
+            return 0;
+        }
+        char str[]= s.toCharArray();
+        int i=0,base=0,sign=1;
+        while(i<str.length && str[i]==' '){
+            System.out.print(str[i]);
+            i++;
+        }
+        if(i==str.length){
+            return 0;
+        }
+        if(str[i]== '-' || str[i]=='+'){
+            if(str[i]=='-'){
+                sign=-1;
+            }else{
+                sign=1;
+            }
+            i++;
+        }
+        while( i<str.length && str[i]>='0' && str[i]<='9'){
+            System.out.print(str[i]);
+            if((base>Integer.MAX_VALUE/10) || (base==Integer.MAX_VALUE/10)
+                  && str[i]-'0' > 7){
+                if(sign ==1){
+                    return Integer.MAX_VALUE;
+                }else{
+                    return Integer.MIN_VALUE;
+                }
+             }
+             base = base*10 + (str[i++]-'0');
+        }
+        return base*sign;
+    }   
+
+
