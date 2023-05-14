@@ -184,5 +184,6 @@ class Solution {
       if(Rabin_Karp(target+a,b)!=-1) return count+1;
 
       return -1;
+      
     }
 }
