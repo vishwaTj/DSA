@@ -2,9 +2,6 @@
                                          Arrays problems
 
 
-
-
-
 1. Set Matrix Zeroes
     Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's?
     
@@ -36,3 +33,39 @@ class Solution {
         
     }
 }
+
+2. next permutaion of arrays
+
+Ans: Simple Algo
+a) come from behind
+b) find the non increasing elemnt i
+c) go from behind again and find the elemnt the first elemnt k bigger than i
+d) swap them
+e) then sort the lements after index i and join it ot original array
+
+
+var nextPermutation = function(nums) {
+
+  // first find the unique element
+  let elmntIdx=0,i;
+  for(i=nums.length-2;i>=0;i--){
+      if(nums[i]<nums[i+1]){
+          elmntIdx=i;
+          break;
+      }
+  }
+  if(i<0){
+      nums.reverse();
+  }else{
+  let swapIdx=0;
+  //find the first biggest of unique element from right
+  for(let j=nums.length-1;j>=0;j--){
+      if(nums[j]>nums[elmntIdx]){
+            swapIdx=j;
+            break;
+      }
+ }
+ 
+ 
+ 
+ 
