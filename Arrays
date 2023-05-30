@@ -67,5 +67,39 @@ var nextPermutation = function(nums) {
  }
  
  
- 
+ 2) The sorting  of 0, 1, 2 in an array without sort?
+Ans) Simple use low, mid and high. Traverse with mid 
+ i) while(mid<=high)
+ ii) if mid === 0 increment both mid and low and swap
+ iii) if mid === 1 increment only mid
+ iv) if mid === 2 decrease high and swap
+
+function swap(arr,low,mid){
+   let el=arr[mid];
+   arr[mid]=arr[low];
+   arr[low]=el;
+} 
+var sortColors = function(nums) {
+    let lo=mid=0,hi=nums.length-1;
+
+    while(mid<=hi){
+        if(nums[mid]===0){
+           swap(nums,lo,mid);
+           mid+=1;
+           lo+=1;
+        }
+        else if(nums[mid]===1){
+            mid+=1;
+        }
+        else{
+            swap(nums,mid,hi);
+            hi-=1;
+        }
+    }  
+
+};
+
+
+
+
  
