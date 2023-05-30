@@ -99,6 +99,32 @@ var sortColors = function(nums) {
 
 };
 
+3) Rotate a matrix?
+Ans ) 
+Technique 1 : my way take first elements from first of every row and form them into a new row you have rotated it
+
+ or 
+ 
+Technique 2 :  take transpose of a matrix and then rotate the rows
+
+var rotate = function(matrix) {
+    let n=matrix.length;
+    
+    // Transposing the matrix
+    for(let i=0;i<n;i++){
+      for(let j=0;j<i;j++){
+        let el=matrix[i][j];
+        matrix[i][j]=matrix[j][i];
+        matrix[j][i]=el;
+      }
+    }
+    
+    // Reversing each row of the matrix
+    for(let i=0;i<n;i++){
+      matrix[i].reverse();
+    }
+
+};
 
 
 
