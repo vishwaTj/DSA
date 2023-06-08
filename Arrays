@@ -100,6 +100,7 @@ var sortColors = function(nums) {
 };
 
 3) Rotate a matrix?
+ Link :- https://leetcode.com/problems/rotate-array/?envType=study-plan-v2&envId=top-interview-150
 Ans ) 
 Technique 1 : my way take first elements from first of every row and form them into a new row you have rotated it
 
@@ -148,6 +149,27 @@ var rotate = function(nums, k) {
     RvrsN(nums,k,nums.length-1);
 };
 ```
+5)  Best Time to Buy and Sell Stock II
+   link : - https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/?envType=study-plan-v2&envId=top-interview-150
+   
+sol: 1) The technique is to find the local minima of every sub array and keep calculating the profit
+     2) The entire profit adds up to one value no matter the incresing order be
+     3) whenever there is difference add it to profit and set the next value
 
+code :-
+    var maxProfit = function(prices) {
+        let profit = 0;
+        let minprice = Infinity;
+        for(let i=0;i<prices.length;i++){
+            minprice = Math.min(minprice,prices[i]);
+            if(prices[i] - minprice>0){
+                profit += prices[i] - minprice;
+                minprice = prices[i];
+            }
+        }
+        console.log(profit);
+        return profit;
+    }; 
+           
 
  
