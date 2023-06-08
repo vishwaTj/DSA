@@ -127,5 +127,27 @@ var rotate = function(matrix) {
 };
 
 
+4) Reverse an array by K lements
+
+Sol) 1) First reverse 
+     2) build helper function to reverse subarrays
+     
+     Code : 
+     ```
+     const RvrsN=(nums,start,end)=>{
+    while(start<end){
+      [nums[start],nums[end]] = [nums[end],nums[start]];
+      start++;
+      end--;
+    }
+} 
+var rotate = function(nums, k) {
+    k = k % nums.length;
+    nums.reverse();
+    RvrsN(nums,0,k-1);
+    RvrsN(nums,k,nums.length-1);
+};
+```
+
 
  
