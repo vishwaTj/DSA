@@ -173,4 +173,10 @@ code :-
            
 6) Jump Game 1: - https://leetcode.com/problems/jump-game/?envType=study-plan-v2&envId=top-interview-150
    Jump Game 2 : - https://leetcode.com/problems/jump-game/?envType=study-plan-v2&envId=top-interview-150
- 
+
+7) H - index
+https://leetcode.com/problems/h-index/description/?envType=study-plan-v2&envId=top-interview-150
+
+Sol:- YOU can find the biggest smallest reoccuring number just by
+     1) sorting the array in reverse oorder
+     2) and traversing till the values in it are greater than the index 
