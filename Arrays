@@ -180,3 +180,25 @@ https://leetcode.com/problems/h-index/description/?envType=study-plan-v2&envId=t
 Sol:- YOU can find the biggest smallest reoccuring number just by
      1) sorting the array in reverse oorder
      2) and traversing till the values in it are greater than the index 
+     
+8) Gas - Station : - https://leetcode.com/problems/gas-station/description/?envType=study-plan-v2&envId=top-interview-150
+Ans:- i) Calculate the total gas 
+      ii) Calculate the current gas, start index
+      iii) if current gas becomes <0 then set it to 0 and increase start index
+      iv) if totalgas>=0 return start index
+
+sol:-
+var canCompleteCircuit = function(gas, cost) {
+    let total_gas=0,curr_gas=0;
+    let strt = 0;
+    for(let i=0;i<gas.length;i++){
+        let diff = gas[i] - cost[i];
+        curr_gas+=diff;
+        total_gas+=diff;
+        if(curr_gas <0 ){
+            strt  = i+1;
+            curr_gas = 0;
+        }
+    }
+    return total_gas>=0? strt:-1;
+};
