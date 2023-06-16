@@ -261,3 +261,27 @@ var trap = function(height) {
     }
     return water;
 };
+
+11) Zig zag pattern -- https://leetcode.com/problems/zigzag-conversion/description/?envType=study-plan-v2&envId=top-interview-150
+sol : Always try to identify the formula of the pattern
+     thepattern always loops back at 2*n+2
+     now solve
+ 
+code:-
+var convert = function(s, numRows) {
+    if (numRows === 1) {
+        return s;
+    }
+    let result = '';
+    const n = s.length;
+    const cycleLen = 2 * numRows - 2;
+    for (let i = 0; i < numRows; i++) {
+        for (let j = 0; j + i < n; j += cycleLen) {
+            result += s[j + i];
+            if (i !== 0 && i !== numRows - 1 && j + cycleLen - i < n) {
+                result += s[j + cycleLen - i];
+            }
+        }
+    }
+    return result;
+};
