@@ -1,0 +1,14 @@
+Two Pointer 
+
+Technique to check isAlphaNumeric in js is
+
+Alphabet check
+   function isLetter(str){
+    return str.length===1 && str.match(/[a-zA-Z]/i);
+  }
+
+Alphanumeric check
+  function isLetter(str){
+    return str.length===1 && str.match(/[a-z0-9]/i);
+  }
+
