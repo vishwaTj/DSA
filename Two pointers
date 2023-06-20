@@ -35,4 +35,46 @@ var twoSum = function(numbers, target) {
     }
 
 };
- 
+
+2) finding the triplet sum  -- https://leetcode.com/problems/3sum/description/?envType=study-plan-v2&envId=top-interview-150
+sol:-
+first sort the array
+then start a loop whith length-2 limit
+keep poiner from the lement next to the current element and also aat the end
+now move the pointers and match
+if matched skip all duplicates
+push it into a new array
+
+code: 
+var threeSum = function(nums) {
+    //empty array to store the result (res).
+    let res=[]; 
+    //sort the given array|| default order = asc order
+    //we sort the arr as it's crucial for it to be done in two-pointer technique
+    //helps us check which int to go to next based on whether it's below or above zero.
+    nums.sort((a,b)=>(a-b))
+    for(let i=0;i<nums.length-2;i++){
+        //to remove duplicates
+        if( i>0 && nums[i]===nums[i-1]) continue;
+
+        let j=i+1; let k=nums.length-1;
+        while(j<k){
+            let sum = nums[i] + nums[j] + nums[k];
+            if(sum===0){
+                res.push([nums[i],nums[j],nums[k]]);
+                //stop duplicates
+                while(nums[j]===nums[j+1]) j++;//or else we end up getting a duplicate triplet
+                while(nums[k]===nums[k+1]) k--;//or else we end up getting a duplicate triplet
+                j++;//even if they aren't equal we still incremenet j
+                k--;//even if they aren't equal we still decrement k
+            }
+            else if(sum<0){ //we increase the value of j
+                j++;
+            }
+            else{//if the sum value is more than zero we decrease the value of k
+                k--;
+            }
+        }
+    }
+    return res;
+};
