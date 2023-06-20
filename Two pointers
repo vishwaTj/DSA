@@ -12,3 +12,27 @@ Alphanumeric check
     return str.length===1 && str.match(/[a-z0-9]/i);
   }
 
+
+1) Two Sum II - Input Array Is Sorted  -- https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/?envType=study-plan-v2&envId=top-interview-150
+Ans) Take two pointers on the left and right
+     start moving the left one if value is less
+     start moving the right (right--) if value is greater
+     if equal then return the indedxes ie left and right pointers
+
+code: - 
+
+var twoSum = function(numbers, target) {
+    
+    let left = 0, right=numbers.length-1;
+    while(left<right){
+        if(numbers[left] + numbers[right] === target){
+            return [left+1,right+1];
+        }if(numbers[left] + numbers[right] > target){
+            right--;
+        }else{
+            left++;
+        }
+    }
+
+};
+ 
