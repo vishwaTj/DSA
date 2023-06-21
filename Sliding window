@@ -1,0 +1,35 @@
+                       SLIDING WINDOW problems
+
+1) Minimum Size Subarray Sum --- https://leetcode.com/problems/minimum-size-subarray-sum/description/?envType=study-plan-v2&envId=top-interview-150
+
+sol:- 
+ take pointers both from start (strt,end)
+ while sum<target keep increasing the end pointer
+ if sum>=target calculate min and keep increasing the strt pointer
+ if length is equal to subarray length return 0
+ else return min
+ 
+ code: - 
+ var minSubArrayLen = function(target, nums) {
+    let min=nums.length+1,sum=0,i=0;
+    let strt=0,end=0;
+    while(strt<=end &&  end<nums.length){
+        if(sum<target){
+           sum+=nums[end];
+           end++;
+        }
+        while(sum>=target && end>=strt){
+           min = Math.min(end - strt, min);
+           sum-=nums[strt];
+           strt++;
+        }
+    }
+    if(min === nums.length+1){
+       min=0;
+    }
+   
+   return min;
+};
+ 
+
+
