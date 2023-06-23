@@ -1,6 +1,16 @@
-                   Algos ecountered in String
+
+                          Algos ecountered in String
 1) Machener Change algorithm
 2) Rabin Karp algorithm to find sub strings
+
+
+
+  Strings are immutable in js meaning you cannot modified a character of string based on its index in square brackets
+
+let str ="Hello";
+str[0]="Y" ----> this is wrong and it wont work
+str.toUpperCase() ---> will not alter the original string and only
+                       return a new object which has to beassigned to a new value
 
 
 
