@@ -38,7 +38,43 @@ sol:-
 3) create a for loop for the entire window till the window can go
 4) iterate and createa function and split the sub string from window into a map2
 5) comapre all values of map and map2 and return true;
+
+code: - 
+var findSubstring = function(s, words) {
+    let res=[];
+
+    let n = words.length;
+    let m = words[0].length;
+    let len = m*n;  //Length of sliding window
  
-2) longest unique substring -- https://leetcode.com/problems/longest-substring-without-repeating-characters/description/?envType=study-plan-v2&envId=top-interview-150
+    let map={};
+
+    for(let w of words) map[w] = map[w]+1 || 1; //Hash word freq
+
+    for(let i=0;i<s.length - len + 1 ; i++){
+        let sub = s.slice(i,i+len);  //Generate substring of sliding window length
+
+        if(isConcat(map,sub,m)) res.push(i);
+    }  
+
+    return res;
+};
+
+var isConcat=(map,sub,m)=>{
+   let seen={};
+
+   for(let i=0;i<sub.length;i+=m){
+       let substr = sub.slice(i,i+m);  
+       seen[substr] = seen[substr] + 1 || 1;
+   }
+
+   for(let key in map){
+       if(map[key] !== seen[key]) return false //Word freq must match between map and seen
+   }
+
+   return true;
+}
+ 
+3) longest unique substring -- https://leetcode.com/problems/longest-substring-without-repeating-characters/description/?envType=study-plan-v2&envId=top-interview-150
 
 
