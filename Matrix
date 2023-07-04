@@ -84,3 +84,32 @@ var spiralOrder = function(matrix) {
     } 
     return collect;
 };
+
+
+3) Rotate a matrix -- https://leetcode.com/problems/rotate-image/description/?envType=study-plan-v2&envId=top-interview-150
+sol:-
+  i) Take transpose of a matrix
+      a) for(i-length)
+          for(j=0; j<i)
+            swap [i][j] and [j][i]
+  ii) reverse each row of the matrix
+
+code:- 
+var rotate = function(matrix) {
+
+    // Transposing a matrix
+    for(let i=0;i<matrix.length;i++){
+        for(let j=0;j<i;j++){
+            let el = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = el;
+        }
+    }
+
+    // reverse each row in matrix
+    for(let i=0;i<matrix.length;i++){
+        matrix[i].reverse();
+    }
+
+    return matrix;
+};
