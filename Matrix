@@ -39,3 +39,48 @@ var isValidSudoku = function(board) {
    return true;
 
 };
+
+
+2) Spiral traversing matrix  -- https://leetcode.com/problems/spiral-matrix/description/
+
+<img src="https://assets.leetcode.com/uploads/2020/11/13/spiral1.jpg" alt="image spiral" >
+
+sol: just keep writing code linke you are forming a ring
+    i) declare a while loop with count less than area, area = xlength * ylength
+    ii) declare vars x , y , xlen, ylen, count and area and matrix to store the spiral pattern
+    ii) declare 4 for loops inside it
+    iii) start traversing in a spiral and write all 4 for loops
+    iii) increase y for first loop to move one step down/
+    iv) increase x for second loop to register an inner ring to be traversed
+    iv) you will easy understand the stopping condition of above loop is start condtion
+        of next loop with small tweek
+
+code: - 
+var spiralOrder = function(matrix) {
+    let xlen = matrix[0].length, ylen = matrix.length;
+    let x = 0, y = 0, count = 0, area = xlen * ylen, collect=[];
+
+    while(count<area){
+        for(let i=x; count<area && i < xlen - x; i++){
+             collect.push(matrix[y][i]);
+             count++;
+        }
+        y++;
+        for(let i=y; count<area && i<(ylen-y)+1;i++){
+            collect.push(matrix[i][(xlen-1)-x]);
+            count++;
+        }
+        x++;
+
+        for(let i = (xlen - 1) - x ; count<area && i>=x-1; i--){
+           collect.push(matrix[(ylen-1)-(y-1)][i]);
+           count++;
+        }
+
+        for(let i = (ylen - 1) - y; count<area && i>=y ; i--){
+            collect.push(matrix[i][x-1]);
+            count++;
+        }
+    } 
+    return collect;
+};
