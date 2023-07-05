@@ -34,7 +34,7 @@ class Solution {
     }
 }
 
-2. next permutaion of arrays
+2. next permutaion of arrays -- https://leetcode.com/problems/next-permutation/
 
 Ans: Simple Algo
 a) come from behind
