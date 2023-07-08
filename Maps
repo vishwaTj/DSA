@@ -1,15 +1,60 @@
                                     Maps
 
+Dual map technique
+ checking them
+
 
 1) Isomorphic strings -- https://leetcode.com/problems/isomorphic-strings/solutions/3121166/easy-js-sol-99-14-acceptable-understandable-approach/
 sol:- check index 
-var isIsomorphic = function(s, t) {
-     for (let i = 0; i < s.length; i++) {
-
-        if (s.indexOf(s[i], i + 1) !== t.indexOf(t[i], i + 1)) {
-            
-            return false;
+I)
+  var isIsomorphic = function(s, t) {
+         for (let i = 0; i < s.length; i++) {
+    
+            if (s.indexOf(s[i], i + 1) !== t.indexOf(t[i], i + 1)) {
+                
+                return false;
+            }
         }
-    }
+        return true;
+    };
+
+Dual map technique
+taking two maps and making altenate key value pairs
+II)
+ var isIsomorphic = function(s, t) {
+     let map1 = {}, map2 = {};
+     for(let i=0;i<s.length;i++){
+         if(!map1[s[i]] && !map2[t[i]]) {
+             map1[s[i]] = t[i];
+             map2[t[i]] = s[i];
+         }else if(map1[s[i]] !== t[i] || map2[t[i]] !== s[i]) return false
+     }
     return true;
 };
+
+
+2) Word pattern -- https://leetcode.com/problems/word-pattern/?envType=study-plan-v2&envId=top-interview-150
+ creating a new set and checking size
+ this helps check distinct values
+
+code:-
+  var wordPattern = function (pattern, s) {
+    //First of all, create an array contains words from s.
+    //And a template to track key value pairs (we use this a bit later)
+      const arr = s.split(" "),temp = {};
+    
+    //Check if both has the same length and amount of unique charactors.
+      if (arr.length !== pattern.length || 
+    new Set([...pattern]).size !== new Set(arr).size) return false;
+      
+    //Iterate over the pattern. 
+    //1.If template has not seen pattern before,
+    //add patter as key word as value.
+    //2. Else, compare, return false if key value do not match.
+      for (let i = 0; i < pattern.length; i++) {
+        if (!temp[pattern[i]]) {temp[pattern[i]] = arr[i];}
+         else if (temp[pattern[i]] !== arr[i]) {return false;}
+      }
+      return true;
+    };
+    
