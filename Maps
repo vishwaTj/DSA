@@ -1,0 +1,15 @@
+                                    Maps
+
+
+1) Isomorphic strings -- https://leetcode.com/problems/isomorphic-strings/solutions/3121166/easy-js-sol-99-14-acceptable-understandable-approach/
+sol:- check index 
+var isIsomorphic = function(s, t) {
+     for (let i = 0; i < s.length; i++) {
+
+        if (s.indexOf(s[i], i + 1) !== t.indexOf(t[i], i + 1)) {
+            
+            return false;
+        }
+    }
+    return true;
+};
