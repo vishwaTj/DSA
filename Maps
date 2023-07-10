@@ -88,3 +88,35 @@ var groupAnagrams = function(strs) {
     return TotalArray;
 };
 
+
+4)**  Happy number -- https://leetcode.com/problems/happy-number/description/?envType=study-plan-v2&envId=top-interview-150
+sol :-
+ recursive function -- use set to collect new values
+
+code:- 
+const validate = (nString, set)=>{
+ 
+   if(nString === '1') return true;
+
+   if(set.has(nString)) return false;
+
+   set.add(nString);
+
+   let newNum=0;
+
+   for(let num of nString){
+
+    newNum+= num**2;
+
+   }
+
+   return validate(newNum.toString(),set);
+
+}
+
+var isHappy = function(n) {
+    
+    let nString = n.toString();
+
+    return validate(nString, new Set());
+};
