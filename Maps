@@ -58,3 +58,33 @@ code:-
       return true;
     };
     
+3) Group Anagrams -- https://leetcode.com/problems/group-anagrams/?envType=study-plan-v2&envId=top-interview-150
+
+sol:- Make a map and store every
+      key -- anagram
+      value -- anagram array
+
+code:- 
+var groupAnagrams = function(strs) {
+
+    let TotalArray=[];
+    let map = new  Map();
+
+    for(let i=0;i<strs.length;i++){
+        let s = strs[i].split('').sort().toString();
+        
+        if(!map.has(s)){
+            map.set(s, [strs[i]]);
+        }
+        else{
+            map.set(s,[...map.get(s),strs[i]]);
+        }
+    }
+
+    for (let value of map.values()) {
+        TotalArray.push(value);
+    }
+
+    return TotalArray;
+};
+
