@@ -1,0 +1,39 @@
+                                                   Intervals 
+
+
+1)** Merge intervals -- https://leetcode.com/problems/merge-intervals/description/
+sol: 1) simple just sort the interval array
+        with first index of subarray
+     2) start with i=1 and comapre values with previous values
+     3) if theres need a change update and modify 
+     4) also splice the original index
+     5) do an i-- to roll back and start from that index only to
+        check higher ones also woth the current ones
+
+code: - 
+var merge = function(intervals) {
+    intervals.sort((a,b)=>a[0]-b[0]);
+    for(let i=1;i<intervals.length;i++){
+        let [x,y] = intervals[i];
+        let [prevX,prevY] = intervals[i-1];
+
+        if(x<= prevY){
+            intervals[i-1][1] = Math.max(y,prevY);
+            intervals.splice(i,1);
+            i--;
+        }
+    }
+    return intervals;
+};
+
+    
+
+
+
+
+
+
+
+
+
+
