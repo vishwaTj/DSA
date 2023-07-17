@@ -28,7 +28,29 @@ var merge = function(intervals) {
 
     
 
+2)** Insert Interval -- https://leetcode.com/problems/insert-interval/description/?envType=study-plan-v2&envId=top-interview-150
+sol)
+1) create a left and right array
+2) if the end of current subarray is less than start of insertion interval push it to left
+3) if the start of current subarray is more than end of insertion interval push it to right array
+4) else do s = Math.min(start, newStart) and e = Math.max(end , newEnd);
+5) after this club all the arrays [...left, [s,e], ...right] ---> this will give new interval array
 
+code:- 
+var insert = function(intervals, newInterval) {
+ 
+    let [newStart, newEnd] = newInterval, left = [], right = [];
+    for(let int of intervals) {
+        let [start, end] = int;
+        if(end < newStart) left.push(int);
+        else if(start > newEnd) right.push(int);
+        else{
+            newStart = Math.min(start, newStart);
+            newEnd = Math.max(end, newEnd);
+        }
+    }
+    return [...left, [newStart, newEnd], ...right];
+};
 
 
 
