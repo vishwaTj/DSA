@@ -1,0 +1,36 @@
+                                             Stack data structure problems
+
+
+1. Simplify Path -- https://leetcode.com/problems/simplify-path/description/?envType=study-plan-v2&envId=top-interview-150
+sol:- simple and easy
+ 1) split it into an array based on '/' as delimeter
+ 2) Remove all empty spaces
+ 3) declare answer array to store
+ 4) Traverse through the split array 
+            a) do nothing for '.'
+            b) pop out value for '..' from answer
+            c) push elements to answer
+ 5) push '/' at the fron and join the answer using '/' as delimeter
+
+coode:- 
+var simplifyPath = function(path) {
+    //split string into array based on slash
+    let s = path.split('/');
+
+    // filter out all the empty spaces
+    s = s.filter((el) => el!=='');
+    
+    // create a result array
+    let result = [];
+
+    for(let el of s){
+        if(el === '.'){
+            //do nothing
+        }else if (el === '..'){
+            result.pop(); // going a directory back so pop it
+        }else{
+            result.push(el);
+        }
+    }
+    return '/' + result.join('/');
+};
