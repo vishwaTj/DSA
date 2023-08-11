@@ -34,3 +34,30 @@ var simplifyPath = function(path) {
     }
     return '/' + result.join('/');
 };
+
+
+2. postfix evalutaion -- https://leetcode.com/problems/evaluate-reverse-polish-notation/description/?envType=study-plan-v2&envId=top-interview-150
+sol:- simple and easy
+1) just detect an operand do pop twice and perform the operation
+2) push back the result to the same stack
+3) if not an opearnad just parse it and push it to stack
+
+code: -
+var evalRPN = function(tokens) {
+    const stack = [];
+
+    for(let i=0;i<tokens.length;i++){
+      if(tokens[i] === '+'){
+        stack.push(stack.pop() + stack.pop());
+      }else if( tokens[i] === '-'){
+        stack.push(- stack.pop() + stack.pop());
+      }else if( tokens[i] === '*'){
+        stack.push(stack.pop() * stack.pop());
+      }else if(tokens[i] === '/'){
+        stack.push(Math.trunc(1/(stack.pop()/stack.pop())));
+      }else{
+        stack.push(parseInt(tokens[i]));
+      }
+    }
+    return stack[0];
+};
