@@ -237,32 +237,41 @@ sol :- Create a new array set 1 as basic
 };
 
 10) trapping rain water -- https://leetcode.com/problems/trapping-rain-water/description/?envType=study-plan-v2&envId=top-interview-150
-Sol:- watch video for local max and local minima method traversal
+Sol:- It uses the concept of array preprocessing
+1) Create two arrays left and right one which stores the left maximas at every point
+   and the other vice versa.
+2) Traverse from left to right for left array and store left max at every point
+   Traverse from right to left for left array and store right max at every point
+3) Then declare a variable to store water
+4) Traverse the main array normally and store water using the formula
+  water+= Math.min(left[i],right[i]) - height[i];
+5) return water
 
 code :-
 var trap = function(height) {
-    let left = 0,right = height.length-1;
-    let leftMax = height[left], rightMax = height[right];
-    let water = 0;
-    while(left<right){
-          if(leftMax<rightMax){
-              left++;
-              if(leftMax < height[left]){
-                  leftMax=height[left];
-              }else{
-                  water+=leftMax - height[left];
-              }
-              
-          }else{
-             right--;
-             if(rightMax<height[right]){
-                 rightMax=height[right];
-             }else{
-                 water+=rightMax - height[right];
-             }
-             
-          }
+    console.log("Yuri gagarin");
+    let n = height.length;
+    let left = [...Array(n)];
+    let right = [...Array(n)];
+    let leftmax = 0,rightmax = 0;
+    for(let i=0;i<n;i++){
+        if(leftmax<height[i]){
+            leftmax = height[i];
+        }
+        left[i]=leftmax;
     }
+
+    for(let i=n-1;i>=0;i--){
+        if(rightmax < height[i]){
+            rightmax = height[i];
+        }
+        right[i] = rightmax;
+    }
+    let water = 0;
+    for(let i=0;i<n;i++){
+        water+=Math.min(left[i],right[i]) - height[i]; 
+    }
+
     return water;
 };
 
